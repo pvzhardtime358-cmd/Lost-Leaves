@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lost Leaves</title>
+
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; }
+
+    /* SPACE BACKGROUND */
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      color: #fff;
+      background: url('lost-leaves-space.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    nav { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); position: sticky; top:0; z-index:10; }
+    nav h1 { font-size:20px; font-weight:bold; }
+    nav .menu { display:flex; gap:18px; flex-wrap:wrap; }
+    nav .menu button { background:none; border:none; color:#fff; font-size:14px; cursor:pointer; opacity:0.85; }
+    nav .menu button:hover { opacity:1; }
+
+    section { display:none; height: calc(100vh - 64px); padding:40px 20px; text-align:center; flex-direction:column; align-items:center; overflow-y:auto; }
+    section.active { display:flex; }
+    #home,#download,#developer,#community,#tutorial,#modinfo { justify-content:center; }
+
+    .blue-btn { display:inline-block; padding:16px 40px; border-radius:22px; background:#2f6df6; color:#fff; font-size:16px; font-weight:bold; border:2px solid rgba(255,255,255,0.3); box-shadow:0 6px 0 rgba(0,0,0,0.4); margin:10px 0; cursor:pointer; transition: all 0.15s ease; }
+    .blue-btn:hover { background:#3b7cff; transform: translateY(-2px); }
+    .pressed { transform: scale(1.1); }
+
+    .logo { width:320px; max-width:90%; margin-bottom:20px; }
+    .desc { max-width:600px; opacity:0.85; margin-bottom:30px; line-height:1.5; }
+
+    .card { background: rgba(0,0,0,0.65); padding:30px; border-radius:26px; width:100%; max-width:600px; backdrop-filter: blur(10px); margin-bottom:30px; text-align:left; }
+    .card h2 { margin-bottom:12px; }
+    .card p { opacity:0.85; margin-bottom:15px; font-size:14px; line-height:1.5; }
+    .card ul { margin-left:20px; margin-bottom:15px; }
+    .card li { margin-bottom:8px; font-size:14px; }
+
+    footer { text-align:center; font-size:12px; opacity:0.6; padding:12px; }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="lost-leaves-theme.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Click Sound -->
+  <audio id="clickSound">
+    <source src="https://freesound.org/data/previews/256/256113_3263906-lq.mp3">
+  </audio>
+
+  <nav>
+    <h1>Lost Leaves</h1>
+    <div class="menu">
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('download')">Download</button>
+      <button onclick="showPage('developer')">Developer</button>
+      <button onclick="showPage('community')">Community</button>
+      <button onclick="showPage('tutorial')">Tutorial</button>
+      <button onclick="showPage('modinfo')">Mod Information</button>
+    </div>
+  </nav>
+
+  <section id="home" class="active">
+    <img src="lost-leaves-logo.png" class="logo">
+    <p class="desc">
+      A Plants vs. Zombies 2 mod restoring classic content, lost mechanics,
+      and new challenges — made for true PvZ fans.
+    </p>
+    <div class="blue-btn" onclick="showPage('download')">Download Now</div>
+  </section>
+
+  <section id="download">
+    <div class="card">
+      <h2>Download</h2>
+      <div class="blue-btn" onclick="downloadFile('https://drive.google.com/uc?export=download&id=1LgxFTxjsNfF6qrD0BsftdCSowUuIn07N')">Google Drive</div>
+      <a class="blue-btn" href="https://mega.nz/file/BEB11JrS#ab4fZ0jBrGa_ZqTJyrAy4io0PE1i2HjxWKFto1KR19o" target="_blank">MEGA</a>
+      <a class="blue-btn" href="https://www.mediafire.com/file/8ffd9425yd76bq2/LL_1.4.zip/file" target="_blank">MediaFire</a>
+    </div>
+  </section>
+
+  <section id="developer">
+    <div class="card">
+      <h2>Developer</h2>
+      <p>Created by Scaredy Leaves</p>
+      <a class="blue-btn" href="https://youtube.com/@pvz2scaredyleaves" target="_blank">YouTube</a>
+    </div>
+  </section>
+
+  <section id="community">
+    <div class="card">
+      <h2>Community</h2>
+      <a class="blue-btn" href="https://discord.gg/km75SfmJZz" target="_blank">Join Discord</a>
+    </div>
+  </section>
+
+  <section id="tutorial">
+    <div class="card">
+      <h2>Tutorial</h2>
+      <p>Learn how to install the Lost Leaves mod by watching this YouTube tutorial:</p>
+      <a class="blue-btn" href="https://youtu.be/MZhRg4VHmXA?si=G6ud3zc4_LERbJZ1" target="_blank">Watch Tutorial</a>
+    </div>
+  </section>
+
+  <section id="modinfo">
+    <div class="card">
+      <h2>Mod Information</h2>
+      <p><strong>Lost Leaves</strong> is a comprehensive PvZ 2 fan mod that brings back all the original vanilla features removed in newer versions of the game. It restores classic plants, zombies, mechanics, and gameplay elements that longtime fans loved.</p>
+      <p>The mod also includes:</p>
+      <ul>
+        <li>All restored vanilla PvZ 2 features from older versions</li>
+        <li>Unique mechanics and challenges not present in the official game</li>
+        <li>Chinese plants and zombies</li>
+        <li>Custom plants and zombies with new abilities</li>
+        <li>Enhanced gameplay for both casual and advanced players</li>
+      </ul>
+      <p>Lost Leaves is designed for true PvZ fans who want to experience a nostalgic, yet expanded, version of the game. It combines classic elements with fresh content, offering hours of fun, strategy, and creativity.</p>
+    </div>
+  </section>
+
+  <footer>© 2026 Lost Leaves — PvZ2 Fan Project</footer>
+
+  <script>
+    const clickSound = document.getElementById("clickSound");
+    const bgMusic = document.getElementById("bgMusic");
+    let musicStarted = false;
+
+    function playClick() {
+      clickSound.currentTime = 0;
+      clickSound.play().catch(()=>{});
+    }
+
+    function startMusic() {
+      if (!musicStarted) {
+        bgMusic.volume = 0.4;
+        bgMusic.play().catch(()=>{});
+        musicStarted = true;
+      }
+    }
+
+    document.addEventListener("click", startMusic, { once: true });
+
+    document.addEventListener("mousedown", e => {
+      if (e.target.classList.contains("blue-btn") || e.target.tagName === "BUTTON") {
+        e.target.classList.add("pressed");
+        playClick();
+      }
+    });
+
+    document.addEventListener("mouseup", e => {
+      if (e.target.classList.contains("blue-btn") || e.target.tagName === "BUTTON") {
+        e.target.classList.remove("pressed");
+      }
+    });
+
+    function showPage(id) {
+      document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function downloadFile(url) {
+      const a = document.createElement("a");
+      a.href = url;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+
+</body>
+</html>
