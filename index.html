@@ -23,6 +23,19 @@
     nav .menu button { background: none; border: none; color: #cbd5e1; font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; padding: 8px 15px; }
     nav .menu button:hover { color: #00ff87; transform: translateY(-3px); }
 
+    /* MOVING HEADLINE (MARQUEE) */
+    .marquee-container {
+      width: 100%; background: rgba(0, 255, 135, 0.08); border-bottom: 1px solid rgba(0, 255, 135, 0.3);
+      overflow: hidden; white-space: nowrap; padding: 12px 0; position: relative; z-index: 9;
+      box-shadow: 0 4px 15px rgba(0, 255, 135, 0.2);
+    }
+    .marquee-text {
+      display: inline-block; font-size: 20px; font-weight: 900; color: #00ff87; text-transform: uppercase;
+      letter-spacing: 4px; text-shadow: 0 0 10px rgba(0, 255, 135, 0.6); padding-left: 100%;
+      animation: scrollText 15s linear infinite;
+    }
+    @keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
     /* SECTIONS */
     section { display: none; min-height: calc(100vh - 80px); padding: 80px 30px; text-align: center; flex-direction: column; align-items: center; }
     section.active { display: flex; animation: fadeSlideUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
@@ -39,6 +52,70 @@
     .logo { width: 450px; max-width: 90%; margin-bottom: 35px; will-change: transform; animation: smoothFloat 7s ease-in-out infinite; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8)); }
     @keyframes smoothFloat { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, -15px, 0); } }
     .desc { max-width: 750px; opacity: 0.95; margin-bottom: 45px; line-height: 1.8; font-size: 20px; color: #f1f5f9; text-shadow: 0 3px 10px rgba(0,0,0,0.9); font-weight: 500;}
+
+    /* CELEBRATION 2.0 BADGE */
+    .version-badge {
+      display: inline-block; padding: 12px 35px; margin-bottom: 25px;
+      background: linear-gradient(90deg, #ff007c, #f1c40f, #00ff87, #00c6ff, #ff007c);
+      background-size: 300% auto;
+      color: #fff; font-weight: 900; font-size: 26px; letter-spacing: 2px;
+      border-radius: 40px; box-shadow: 0 0 25px rgba(241, 196, 15, 0.7);
+      animation: pulseBounce 2s infinite, shine 4s linear infinite;
+      text-transform: uppercase; border: 2px solid #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    @keyframes pulseBounce {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(241, 196, 15, 0.6); }
+      50% { transform: scale(1.08); box-shadow: 0 0 40px rgba(241, 196, 15, 0.9); }
+    }
+    @keyframes shine {
+      to { background-position: 300% center; }
+    }
+
+    /* COUNTDOWN TIMER STYLES */
+    .countdown-container {
+      background: rgba(0, 255, 135, 0.05);
+      border: 1px solid rgba(0, 255, 135, 0.4);
+      padding: 20px 40px;
+      border-radius: 20px;
+      margin-bottom: 35px;
+      box-shadow: 0 10px 30px rgba(0, 255, 135, 0.15);
+      backdrop-filter: blur(5px);
+      display: inline-block;
+    }
+    .countdown-title {
+      font-size: 16px; color: #00c6ff; font-weight: 800; letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase;
+    }
+    .countdown-timer {
+      font-size: 54px; font-weight: 900; color: #fff; text-shadow: 0 0 20px rgba(0, 255, 135, 0.8);
+      font-variant-numeric: tabular-nums; /* Keeps numbers from shifting widths */
+      letter-spacing: 2px;
+    }
+    .countdown-label {
+      font-size: 14px; color: #94a3b8; letter-spacing: 4px; font-weight: 700; text-transform: uppercase; margin-top: 5px;
+    }
+
+    /* NEON BALLOONS */
+    .balloon-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
+    .balloon {
+      position: absolute; bottom: -150px; width: 45px; height: 60px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), currentcolor);
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      animation: floatUp linear infinite; opacity: 0.85; box-shadow: 0 0 20px currentcolor;
+    }
+    .balloon::before {
+      content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%);
+      border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid currentcolor;
+    }
+    .balloon::after {
+      content: ''; position: absolute; bottom: -45px; left: 50%; transform: translateX(-50%);
+      width: 2px; height: 45px; background: rgba(255,255,255,0.35);
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-60vh) rotate(5deg); }
+      100% { transform: translateY(-120vh) rotate(-5deg); }
+    }
 
     /* CARDS */
     .card { background: linear-gradient(145deg, rgba(15, 23, 42, 0.8), rgba(2, 6, 23, 0.95)); padding: 60px; border-radius: 28px; width: 100%; max-width: 850px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); margin-bottom: 50px; text-align: left; border: 1px solid rgba(255, 255, 255, 0.1); border-top: 1px solid rgba(0, 198, 255, 0.4); border-left: 1px solid rgba(0, 255, 135, 0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255, 255, 255, 0.1); transition: transform 0.4s ease, border-color 0.4s ease; }
@@ -121,6 +198,8 @@
 </head>
 <body>
 
+  <!-- BACKGROUND EFFECTS -->
+  <div class="balloon-container" id="balloonContainer"></div>
   <div class="rain-container" id="rainContainer"></div>
 
   <audio id="bgMusic" loop>
@@ -147,8 +226,24 @@
     </div>
   </nav>
 
+  <!-- MOVING HEADLINE -->
+  <div class="marquee-container">
+    <div class="marquee-text">🎉 Lost Leaves 2.0 &nbsp;&nbsp;&nbsp;&nbsp; 🎉 Lost Leaves 2.0 &nbsp;&nbsp;&nbsp;&nbsp; 🎉 Lost Leaves 2.0 &nbsp;&nbsp;&nbsp;&nbsp; 🎉 Lost Leaves 2.0 &nbsp;&nbsp;&nbsp;&nbsp; 🎉 Lost Leaves 2.0</div>
+  </div>
+
   <section id="home" class="active">
     <img src="lost-leaves-logo.png" class="logo" alt="Lost Leaves Logo">
+    
+    <!-- NEW 2.0 BADGE -->
+    <div class="version-badge">Lost Leaves 2.0! 🎉</div>
+    
+    <!-- NEW 3-DAY SECONDS COUNTDOWN -->
+    <div class="countdown-container">
+      <div class="countdown-title" id="countdownTitle">2.0 RELEASING IN</div>
+      <div class="countdown-timer" id="countdownSeconds">259,200</div>
+      <div class="countdown-label">TOTAL SECONDS</div>
+    </div>
+    
     <p class="desc">A Plants vs. Zombies 2 mod restoring classic content and lost mechanics. Experience a nostalgia-filled expanded universe!</p>
     <div class="blue-btn" onclick="showPage('download')">Download Now</div>
   </section>
@@ -156,7 +251,7 @@
   <section id="download">
     <div class="card">
       <h2>Download</h2>
-      <p>Download the mod through these links.</p>
+      <p>Secure the Lost Leaves mod on your preferred platform below.</p>
       <div class="blue-btn" onclick="downloadFile('https://drive.google.com/file/d/1Kr1q42Rn9k1Pzdbc0TNI_Oyh4vbLPEce/view?usp=drivesdk')">Google Drive</div>
       <a class="blue-btn" href="https://mega.nz/file/KgxjzLqY#o3WbVZtgH11CTOaPxMmt665rJmExHcp4V8UW55QLEi0" target="_blank">MEGA</a>
       <a class="blue-btn" href="https://www.mediafire.com/file/9a5h0mfopzdc7ly/Lost_Leaves_1.9.zip/file" target="_blank">MediaFire</a>
@@ -185,7 +280,6 @@
         <div class="fusion-item"><img src="magic-peashooter.png"><h3>Magic Peashooter</h3><p>Enchantmint + Peashooter</p></div>
         <div class="fusion-item"><img src="magic-gatling-pea.png"><h3>Magic Gatling Pea</h3><p>Enchantmint + Magic Peashooter</p></div>
         <div class="fusion-item"><img src="firemelon.png"><h3>Fire Melon</h3><p>Melonpult + Fire Peashooter</p></div>
-        <div class="fusion-item"><img src="snowwood.png"><h3>Snow Wood</h3><p>Torchwood + Snow Pea</p></div>
         <div class="fusion-item"><img src="icenut.png"><h3>Ice Nut</h3><p>Wallnut + Iceburg Lettuce</p></div>
       </div>
     </div>
@@ -264,7 +358,6 @@
 
     function playClick() { clickSound.currentTime = 0; clickSound.play().catch(()=>{}); }
     
-    // NEW MUSIC TOGGLE LOGIC
     function toggleMusic() {
       const btn = document.getElementById("musicToggleBtn");
       if (bgMusic.paused) {
@@ -322,6 +415,7 @@
 
     function downloadFile(url) { const a = document.createElement("a"); a.href = url; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
 
+    // RAIN GENERATOR
     function createRain() {
       const container = document.getElementById('rainContainer');
       const dropCount = window.innerWidth < 850 ? 20 : 60; 
@@ -335,6 +429,60 @@
       }
     }
     createRain();
+
+    // BALLOON GENERATOR
+    function createBalloons() {
+      const container = document.getElementById('balloonContainer');
+      const colors = ['#00ff87', '#00c6ff', '#f1c40f', '#ff007c', '#b100ff'];
+      const balloonCount = window.innerWidth < 850 ? 15 : 25; 
+
+      for (let i = 0; i < balloonCount; i++) {
+        const balloon = document.createElement('div');
+        balloon.classList.add('balloon');
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        balloon.style.color = color;
+        balloon.style.left = Math.random() * 100 + 'vw';
+        balloon.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        balloon.style.animationDelay = Math.random() * 10 + 's';
+        container.appendChild(balloon);
+      }
+    }
+    createBalloons();
+
+    // TOTAL SECONDS COUNTDOWN LOGIC (3 Days)
+    function initCountdown() {
+      // 3 Days converted to milliseconds (3 * 24 * 60 * 60 * 1000 = 259200000)
+      const countdownDuration = 259200000; 
+      let targetTime = localStorage.getItem('lostLeavesTargetDate');
+      
+      // Set the target date if it hasn't been set yet
+      if (!targetTime) {
+        targetTime = new Date().getTime() + countdownDuration;
+        localStorage.setItem('lostLeavesTargetDate', targetTime);
+      }
+
+      const countdownEl = document.getElementById('countdownSeconds');
+      const titleEl = document.getElementById('countdownTitle');
+
+      const timerInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetTime - now;
+
+        if (distance <= 0) {
+          clearInterval(timerInterval);
+          countdownEl.innerText = "0";
+          titleEl.innerText = "2.0 IS LIVE!";
+          return;
+        }
+
+        // Convert the remaining distance entirely to seconds
+        const totalSeconds = Math.floor(distance / 1000);
+        
+        // Formats with commas (e.g., 259,200)
+        countdownEl.innerText = totalSeconds.toLocaleString();
+      }, 1000);
+    }
+    initCountdown();
   </script>
 </body>
 </html>
