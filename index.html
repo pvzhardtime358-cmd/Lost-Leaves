@@ -72,29 +72,6 @@
       to { background-position: 300% center; }
     }
 
-    /* COUNTDOWN TIMER STYLES */
-    .countdown-container {
-      background: rgba(0, 255, 135, 0.05);
-      border: 1px solid rgba(0, 255, 135, 0.4);
-      padding: 20px 40px;
-      border-radius: 20px;
-      margin-bottom: 35px;
-      box-shadow: 0 10px 30px rgba(0, 255, 135, 0.15);
-      backdrop-filter: blur(5px);
-      display: inline-block;
-    }
-    .countdown-title {
-      font-size: 16px; color: #00c6ff; font-weight: 800; letter-spacing: 2px; margin-bottom: 5px; text-transform: uppercase;
-    }
-    .countdown-timer {
-      font-size: 54px; font-weight: 900; color: #fff; text-shadow: 0 0 20px rgba(0, 255, 135, 0.8);
-      font-variant-numeric: tabular-nums; /* Keeps numbers from shifting widths */
-      letter-spacing: 2px;
-    }
-    .countdown-label {
-      font-size: 14px; color: #94a3b8; letter-spacing: 4px; font-weight: 700; text-transform: uppercase; margin-top: 5px;
-    }
-
     /* NEON BALLOONS */
     .balloon-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
     .balloon {
@@ -235,26 +212,19 @@
     <img src="lost-leaves-logo.png" class="logo" alt="Lost Leaves Logo">
     
     <!-- NEW 2.0 BADGE -->
-    <div class="version-badge">Lost Leaves 2.0! 🎉</div>
+    <div class="version-badge">🎉 Version 2.0 Released! 🎉</div>
     
-    <!-- NEW 3-DAY SECONDS COUNTDOWN -->
-    <div class="countdown-container">
-      <div class="countdown-title" id="countdownTitle">2.0 RELEASING IN</div>
-      <div class="countdown-timer" id="countdownSeconds">259,200</div>
-      <div class="countdown-label">TOTAL SECONDS</div>
-    </div>
-    
-    <p class="desc">A Plants vs. Zombies 2 mod restoring classic content and lost mechanics. Experience a nostalgia-filled expanded universe!</p>
+    <p class="desc">The massive 2.0 update is finally here! A Plants vs. Zombies 2 mod restoring classic content and lost mechanics. Experience a nostalgia-filled expanded universe celebrating our biggest release yet!</p>
     <div class="blue-btn" onclick="showPage('download')">Download Now</div>
   </section>
 
   <section id="download">
     <div class="card">
-      <h2>Download</h2>
-      <p>Secure the Lost Leaves mod on your preferred platform below.</p>
-      <div class="blue-btn" onclick="downloadFile('https://drive.google.com/file/d/1Kr1q42Rn9k1Pzdbc0TNI_Oyh4vbLPEce/view?usp=drivesdk')">Google Drive</div>
-      <a class="blue-btn" href="https://mega.nz/file/KgxjzLqY#o3WbVZtgH11CTOaPxMmt665rJmExHcp4V8UW55QLEi0" target="_blank">MEGA</a>
-      <a class="blue-btn" href="https://www.mediafire.com/file/9a5h0mfopzdc7ly/Lost_Leaves_1.9.zip/file" target="_blank">MediaFire</a>
+      <h2>Download Version 2.0</h2>
+      <p>The highly anticipated Version 2.0 is officially live! Secure the newly updated Lost Leaves mod on your preferred platform below and enjoy the new features.</p>
+      <div class="blue-btn" onclick="downloadFile('https://drive.google.com/file/d/1a-XU7onWkWvCsNDg5J2TL2akaIOYHkU6/view?usp=drivesdk')">Google Drive</div>
+      <a class="blue-btn" href="https://mega.nz/file/jl5H0biJ#19EUSXgq2oRJO7XCQdmr5GbZNkUC9boR0GGRyaGjACM" target="_blank">MEGA</a>
+      <a class="blue-btn" href="https://www.mediafire.com/file/7t75hsh0d88pa1q/Lost_Leaves_2.0.zip/file" target="_blank">MediaFire</a>
     </div>
   </section>
 
@@ -280,6 +250,7 @@
         <div class="fusion-item"><img src="magic-peashooter.png"><h3>Magic Peashooter</h3><p>Enchantmint + Peashooter</p></div>
         <div class="fusion-item"><img src="magic-gatling-pea.png"><h3>Magic Gatling Pea</h3><p>Enchantmint + Magic Peashooter</p></div>
         <div class="fusion-item"><img src="firemelon.png"><h3>Fire Melon</h3><p>Melonpult + Fire Peashooter</p></div>
+        <div class="fusion-item"><img src="snowwood.png"><h3>Snow Wood</h3><p>Torchwood + Snow Pea</p></div>
         <div class="fusion-item"><img src="icenut.png"><h3>Ice Nut</h3><p>Wallnut + Iceburg Lettuce</p></div>
       </div>
     </div>
@@ -448,41 +419,6 @@
       }
     }
     createBalloons();
-
-    // TOTAL SECONDS COUNTDOWN LOGIC (3 Days)
-    function initCountdown() {
-      // 3 Days converted to milliseconds (3 * 24 * 60 * 60 * 1000 = 259200000)
-      const countdownDuration = 259200000; 
-      let targetTime = localStorage.getItem('lostLeavesTargetDate');
-      
-      // Set the target date if it hasn't been set yet
-      if (!targetTime) {
-        targetTime = new Date().getTime() + countdownDuration;
-        localStorage.setItem('lostLeavesTargetDate', targetTime);
-      }
-
-      const countdownEl = document.getElementById('countdownSeconds');
-      const titleEl = document.getElementById('countdownTitle');
-
-      const timerInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetTime - now;
-
-        if (distance <= 0) {
-          clearInterval(timerInterval);
-          countdownEl.innerText = "0";
-          titleEl.innerText = "2.0 IS LIVE!";
-          return;
-        }
-
-        // Convert the remaining distance entirely to seconds
-        const totalSeconds = Math.floor(distance / 1000);
-        
-        // Formats with commas (e.g., 259,200)
-        countdownEl.innerText = totalSeconds.toLocaleString();
-      }, 1000);
-    }
-    initCountdown();
   </script>
 </body>
 </html>
