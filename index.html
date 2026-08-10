@@ -26,7 +26,7 @@
     /* SECTIONS */
     section { display: none; min-height: calc(100vh - 80px); padding: 80px 30px; text-align: center; flex-direction: column; align-items: center; }
     section.active { display: flex; animation: fadeSlideUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
-    #home, #download, #developer, #community, #tutorial, #modinfo, #feedback { justify-content: flex-start; }
+    #home, #download, #developer, #community, #tutorial, #modinfo, #feedback, #other { justify-content: flex-start; }
 
     @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -144,6 +144,7 @@
       <button onclick="showPage('tutorial')">Tutorial</button>
       <button onclick="showPage('modinfo')">Mod Information</button>
       <button onclick="showPage('feedback')">Feedback</button>
+      <button onclick="showPage('other')">Other Websites</button>
     </div>
   </nav>
 
@@ -239,6 +240,15 @@
       <div id="disqus_container_feedback" style="margin-top: 30px; background: rgba(15, 23, 42, 0.4); padding: 20px; border-radius: 15px;">
         <div id="disqus_thread"></div>
       </div>
+    </div>
+  </section>
+
+  <section id="other">
+    <div class="card">
+      <h2>Other Websites</h2>
+      <p>Check out our other awesome related projects and tools below.</p>
+      <a class="blue-btn" href="https://pvzhardtime358-cmd.github.io/Debrige/" target="_blank">Debrige Website</a>
+      <a class="blue-btn" href="https://pvzhardtime358-cmd.github.io/Lost-Leaves-Level-Maker/" target="_blank">Level Making Website</a>
     </div>
   </section>
 
